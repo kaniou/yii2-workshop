@@ -14,6 +14,7 @@
     <a class="list-group-item">ขายสินค้า</a>
     <a class="list-group-item">บันทึกค่าใช้จ่าย</a>
     <a class="list-group-item">ประเภทค่าใช้จ่าย</a>
+    <a class="list-group-item">ทดสอบ git</a>
     
     <a class="list-group-item disabled">
         <span class="glyphicon glyphicon-user"></span>
