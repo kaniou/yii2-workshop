@@ -26,7 +26,7 @@ use yii\web\Session;
             </div>
         <?php endif; ?>
         <?php
-        $f = ActiveForm::begin(['option' => ['enctype' => 'multipart/form-data']]);
+        $f = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]);
         echo $f->field($company, 'name');
         echo $f->field($company, 'tax_code');
         echo $f->field($company, 'tel');
