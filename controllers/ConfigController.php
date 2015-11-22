@@ -26,6 +26,10 @@ class ConfigController extends Controller {
                 if (file_exists('upload/' . $name)) {
                     unlink('upload' . $name);
                 }
+
+                if (move_uploaded_file($tmp_name, 'upload/' . $name)) {
+                    $company->logo = $name;
+                }
             }
 
             $company->name = $post['Company']['name'];
