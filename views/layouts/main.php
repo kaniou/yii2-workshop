@@ -19,6 +19,29 @@ $session = new \yii\web\Session();
         <title>ระบบร้านค้าปลีก</title>
         <?php $this->head() ?>
         <link rel="stylesheet" type="text/css" href="css/superhero.css"/>
+        <style>
+            .has-error{
+                background: #d9534f;
+                padding: 8px;
+            }
+            .has-error .control-label{
+                color: #f9f8f7;
+            }
+            .has-error .help-block{
+                color: #f9f8f7;
+            }
+            table.table-bordered tr td{
+                border-bottom: #ccc 1px solid;
+            }
+            .table thead tr th{
+                color: #333;
+                background: #ccc;
+                padding: 10px;
+            }
+            .table{
+                margin-top: 15px;
+            }
+        </style>
     </head>
     <body>
         <?php $this->beginBody() ?>
