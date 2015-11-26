@@ -51,4 +51,42 @@ class ConfigController extends Controller {
         ]);
     }
 
+    public function actionBranch() {
+        $branchs = \app\models\Branch::find()->orderBy('id DESC')->all();
+
+        return $this->render('//config/branch', [
+                    'branchs' => $branchs,
+        ]);
+    }
+
+    public function actionBranchform($id = null) {
+        $branch = new \app\models\Branch();
+        $post = Yii::$app->request->post();
+        if (!empty($id)) {
+            $branch = \app\models\Branch::find()->where(['id' => $id])->one();
+        }
+
+        if (!empty($post)) {
+            $branch->name = $post['Branch']['name'];
+            $branch->tel = $post['Branch']['tel'];
+            $branch->address = $post['Branch']['address'];
+
+            if ($branch->save()) {
+                return $this->redirect(['branch']);
+            }
+        }
+        return $this->render('//config/branch_form', [
+                    'branch' => $branch
+        ]);
+    }
+
+    public function actionBranchdelete($id) {
+        $branch = \app\models\Branch::find()->where(['id' => $id])->one();
+        if (!empty($branch)) {
+            if ($branch->delete()) {
+                return $this->redirect(['branch']);
+            }
+        }
+    }
+
 }
