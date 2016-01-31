@@ -67,6 +67,6 @@
     <a class="list-group-item">ข้อมูลร้าน</a>
     <a href="index.php?r=config/branch" class="list-group-item">สาขา</a>
     <a href="index.php?r=config/store" class="list-group-item">คลังสินค้า</a>
-    <a class="list-group-item">ประเภทผู้ใช้งาน</a>
+    <a href="index.php?r=config/usertype" class="list-group-item">ประเภทผู้ใช้งาน</a>
     <a class="list-group-item">ผู้ใช้งานระบบ</a>
 </div>
