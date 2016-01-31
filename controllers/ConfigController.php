@@ -89,4 +89,45 @@ class ConfigController extends Controller {
         }
     }
 
+    public function actionStore() {
+        $stores = \app\models\Store::find()->orderBy('id DESC')->all();
+        return $this->render('//config/store', [
+                    'stores' => $stores
+        ]);
+    }
+
+    public function actionStoreform($id = null) {
+        $store = new \app\models\Store();
+        $branchs = \app\models\Branch::find()->all();
+        $options = \yii\helpers\ArrayHelper::map($branchs, 'id', 'name');
+        $post = Yii::$app->request->post();
+
+        if (!empty($id)) {
+            $store = \app\models\Store::find()->where(['id' => $id])->one();
+        }
+        if (!empty($post)) {
+            $store->name = $post['Store']['name'];
+            $store->tel = $post['Store']['tel'];
+            $store->address = $post['Store']['address'];
+            $store->branch_id = $post['Store']['branch_id'];
+            if ($store->save()) {
+                return $this->redirect(['store']);
+            }
+        }
+
+        return $this->render('//config/store_form', [
+                    'store' => $store,
+                    'options' => $options
+        ]);
+    }
+
+    public function actionStoredelete($id) {
+        $store = \app\models\Store::find()->where(['id' => $id])->one();
+        if (!empty($store)) {
+            if ($store->delete()) {
+                return $this->redirect(['store']);
+            }
+        }
+    }
+
 }
