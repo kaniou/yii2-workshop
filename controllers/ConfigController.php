@@ -130,4 +130,70 @@ class ConfigController extends Controller {
         }
     }
 
+    public function actionUsertype() {
+        $userTypes = \app\models\UserType::find()
+                ->orderBy('id DESC')
+                ->all();
+        $icon = [
+            'yes' => '<span class="glyphicon glyphicon-ok"></span>',
+            'no' => ''
+        ];
+        return $this->render('//config/user_type', [
+                    'userTypes' => $userTypes,
+                    'icon' => $icon
+        ]);
+    }
+
+    public function actionUsertypeform($id = null) {
+        $userType = new \app\models\UserType();
+
+        $post = Yii::$app->request->post();
+        if (!empty($id)) {
+            $userType = \app\models\UserType::find()
+                    ->where(['id' => $id])
+                    ->one();
+
+            $userType->access_report = ($userType->access_report == 'yes');
+            $userType->access_config = ($userType->access_config == 'yes');
+            $userType->access_sale = ($userType->access_sale == 'yes');
+            $userType->access_stock = ($userType->access_stock == 'yes');
+            $userType->access_member = ($userType->access_member == 'yes');
+            $userType->access_account = ($userType->access_account == 'yes');
+            $userType->access_ar = ($userType->access_ar == 'yes');
+            $userType->access_repair = ($userType->access_repair == 'yes');
+            $userType->access_serial = ($userType->access_serial == 'yes');
+        }
+
+        if (!empty($post)) {
+            $userType->name = $post['UserType']['name'];
+            $userType->access_config = $post['UserType']['access_config'] ? 'yes' : 'no';
+            $userType->access_report = $post['UserType']['access_report'] ? 'yes' : 'no';
+            $userType->access_sale = $post['UserType']['access_sale'] ? 'yes' : 'no';
+            $userType->access_stock = $post['UserType']['access_stock'] ? 'yes' : 'no';
+            $userType->access_member = $post['UserType']['access_member'] ? 'yes' : 'no';
+            $userType->access_account = $post['UserType']['access_account'] ? 'yes' : 'no';
+            $userType->access_ar = $post['UserType']['access_ar'] ? 'yes' : 'no';
+            $userType->access_repair = $post['UserType']['access_repair'] ? 'yes' : 'no';
+            $userType->access_serial = $post['UserType']['access_serial'] ? 'yes' : 'no';
+
+            if ($userType->save()) {
+                return $this->redirect(['usertype']);
+            }
+        }
+        return $this->render('//config/user_type_form', [
+                    'userType' => $userType
+        ]);
+    }
+
+    public function actionUsertypedelete($id) {
+        $userType = \app\models\UserType::find()
+                ->where(['id' => $id])
+                ->one();
+        if (!empty($userType)) {
+            if ($userType->delete()) {
+                return $this->redirect(['usertype']);
+            }
+        }
+    }
+
 }
