@@ -24,6 +24,7 @@
                     <th width="80px" style="text-align: center">ลูกหนี้</th>
                     <th width="80px" style="text-align: center">ซ่อม</th>
                     <th width="80px" style="text-align: center">รับประกัน</th>
+                    <th width="90px"></th>
                 </tr>
             </thead>
             <tbody>
