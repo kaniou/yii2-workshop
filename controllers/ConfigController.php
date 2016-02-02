@@ -196,4 +196,53 @@ class ConfigController extends Controller {
         }
     }
 
+    public function actionUser() {
+        $users = \app\models\User::find()
+                ->orderBy('id DESC')
+                ->all();
+        return $this->render('//config/user', [
+                    'users' => $users,
+                    'n' => 1
+        ]);
+    }
+
+    public function actionUserform($id = null) {
+        $user = new \app\models\User();
+        if (!empty($id)) {
+            $user = \app\models\User::find()
+                    ->where(['id' => $id])
+                    ->one();
+        }
+
+        $post = Yii::$app->request->post();
+        if (!empty($post)) {
+            $user->branch_id = $post['User']['branch_id'];
+            $user->user_type_id = $post['User']['user_type_id'];
+            $user->fname = $post['User']['fname'];
+            $user->lname = $post['User']['lname'];
+            $user->usr = $post['User']['usr'];
+            $user->pwd = $post['User']['pwd'];
+            $user->tel = $post['User']['tel'];
+            $user->email = $post['User']['email'];
+            $user->status = 'use';
+            $user->created_at = new \yii\db\Expression('NOW()');
+
+            if ($user->save()) {
+                return $this->redirect(['user']);
+            }
+        }
+
+        $branchs = \app\models\Branch::find()->all();
+        $userTypes = \app\models\UserType::find()->all();
+
+        $branchIds = \yii\helpers\ArrayHelper::map($branchs, 'id', 'name');
+        $userTypeIds = \yii\helpers\ArrayHelper::map($userTypes, 'id', 'name');
+
+        return $this->render('//config/user_form', [
+                    'user' => $user,
+                    'branchIds' => $branchIds,
+                    'userTypeIds' => $userTypeIds
+        ]);
+    }
+
 }
