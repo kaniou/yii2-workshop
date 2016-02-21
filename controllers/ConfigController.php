@@ -245,4 +245,41 @@ class ConfigController extends Controller {
         ]);
     }
 
+    public function actionUserdelete($id) {
+        $user = \app\models\User::find()
+                ->where(['id' => $id])
+                ->one();
+        if (!empty($user)) {
+            if ($user->delete()) {
+                return $this->redirect(['user']);
+            }
+        }
+    }
+
+    public function actionUserblock($id) {
+        $user = \app\models\User::find()
+                ->where(['id' => $id]);
+        if (!empty($user)) {
+            $user->status = 'block';
+            $user->block_at = new \yii\db\Expression('NOW()');
+
+            if ($user->save()) {
+                return $this->redirect(['user']);
+            }
+        }
+    }
+
+    public function actionUserunblock($id) {
+        $user = \app\models\User::find()
+                ->where(['id' => $id])
+                ->one();
+        if (!empty($user)) {
+            $user->status = 'use';
+            $user->block_at = '0000-00-00 00:00:00';
+            if ($user->save()) {
+                return $this->redirect(['user']);
+            }
+        }
+    }
+
 }
