@@ -36,7 +36,7 @@
                         <td><?php echo $user->email; ?></td>
                         <td><?php echo $user->branch->name; ?></td>
                         <td><?php echo $user->userType->name; ?></td>
-                        <td><?php echo $user->create_at; ?></td>
+                        <td><?php echo $user->created_at; ?></td>
                         <td><?php echo $user->status; ?></td>
                         <td align="center">
                             <a href="index.php?r=config/userunblock&id=<?php echo $user->id; ?>"
