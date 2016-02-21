@@ -258,7 +258,8 @@ class ConfigController extends Controller {
 
     public function actionUserblock($id) {
         $user = \app\models\User::find()
-                ->where(['id' => $id]);
+                ->where(['id' => $id])
+                ->one();
         if (!empty($user)) {
             $user->status = 'block';
             $user->block_at = new \yii\db\Expression('NOW()');
