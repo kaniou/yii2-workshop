@@ -29,7 +29,7 @@ class ProductTypeController extends Controller {
             $productType->remark = $post['ProductType']['remark'];
             if ($productType->save()) {
                 return $this->redirect(['index']);
-            }
+            }   
         }
         return $this->render('//product_type/form', [
                     'productType' => $productType
