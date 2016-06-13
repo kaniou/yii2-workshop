@@ -27,7 +27,7 @@ class UserType extends ActiveRecord {
             'access_account' => 'เข้าเมนูบัญชีได้',
             'access_ar' => 'เข้าเมนูลูกหนี้ได้',
             'access_repair' => 'เข้าเมนูงานซ่อมได้',
-            'access_serial' => 'เข้าเมนูต่อประกันได้ได้'
+            'access_serial' => 'เข้าเมนูต่อประกันได้'
         ];
     }
 
