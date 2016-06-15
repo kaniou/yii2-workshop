@@ -5,14 +5,14 @@ namespace app\controllers;
 use Yii;
 use yii\web\Controller;
 
-class ProductTypeController extends Controller {
+class ProducttypeController extends Controller {
 
     public function actionIndex() {
         $productTypes = \app\models\ProductType::find()
                 ->orderBy('id DESC')
                 ->all();
         return $this->render('//product_type/index', [
-                    'productType' => $productTypes
+                    'productTypes' => $productTypes
         ]);
     }
 
