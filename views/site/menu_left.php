@@ -56,8 +56,8 @@
         <span class="glyphicon glyphicon-th-large"></span>
         สินค้า
     </a>
-    <a href="index.php?=producttype/index" class="list-group-item">ประเภทสินค้า</a>
-    <a class="list-group-item">สินค้า</a>
+    <a href="index.php?r=producttype/index" class="list-group-item">ประเภทสินค้า</a>
+    <a href="index.php?r=product/index" class="list-group-item">สินค้า</a>
     <a class="list-group-item">สินค้าแถม</a>
 
     <a class="list-group-item disabled">
